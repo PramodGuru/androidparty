@@ -1,79 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:id="@+id/input_username"
+    <data>
+<variable
+    name="viewModel"
+    type="com.pdguru.androidparty.MainActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:autofillHints="username"
-        android:background="@drawable/rounded_bg"
-        android:drawableStart="@drawable/ico_username"
-        android:drawablePadding="8dp"
-        android:hint="@string/username"
-        android:inputType="text"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        android:textColorHint="@color/grey"/>
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/input_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
-        android:autofillHints="password"
-        android:background="@drawable/rounded_bg"
-        android:drawableStart="@drawable/ico_lock"
-        android:drawablePadding="8dp"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/btn_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_username"
-        android:textColorHint="@color/grey"/>
+        <EditText
+            android:id="@+id/input_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:autofillHints="username"
+            android:background="@drawable/rounded_bg"
+            android:drawableStart="@drawable/ico_username"
+            android:drawablePadding="8dp"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:padding="18dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            android:textColorHint="@color/grey" />
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/ico_lock"
-        app:layout_constraintBottom_toTopOf="@id/input_username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:autofillHints="password"
+            android:background="@drawable/rounded_bg"
+            android:drawableStart="@drawable/ico_lock"
+            android:drawablePadding="8dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="18dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/btn_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_username"
+            android:textColorHint="@color/grey" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_password"
-        android:layout_marginBottom="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/login"
-        android:background="@drawable/rounded_bg"
-        android:clickable="true"
-        android:focusable="true"/>
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ico_lock"
+            app:layout_constraintBottom_toTopOf="@id/input_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_password"
+            android:layout_marginBottom="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/login"
+            android:background="@drawable/rounded_bg"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+//apply plugin: 'kotlin-kapt'
+
 android {
     compileSdk 31
 
@@ -29,6 +31,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -50,11 +56,20 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
 
     // Moshi JSON handling
+    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
     implementation("com.squareup.moshi:moshi:1.12.0")
     implementation("com.squareup.moshi:moshi-adapters:1.12.0")
+//    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.12.0")
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
+
+    //Lifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.0-alpha06")
+    implementation("androidx.lifecycle:lifecycle-service:2.4.1")
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 }

@@ -8,10 +8,10 @@ import retrofit2.http.*
 
 interface ServerInterface {
 
-    @GET("/servers")
+    @GET("servers")
     suspend fun getServers(): Response<List<ServerLocations>>
 
     @Headers("Content-Type: application/json")
-    @POST("/tokens")
+    @POST("tokens")
     suspend fun login(@Body body: LoginCredentials): Response<LoginToken>
 }
