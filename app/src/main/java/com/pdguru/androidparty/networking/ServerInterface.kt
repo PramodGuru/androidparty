@@ -13,5 +13,5 @@ interface ServerInterface {
 
     @Headers("Content-Type: application/json")
     @POST("tokens")
-    suspend fun login(@Body body: String): Response<String>
+    suspend fun login(@Body body: LoginCredentials): Response<LoginToken>
 }

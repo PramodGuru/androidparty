@@ -20,10 +20,10 @@ class MainActivityViewModel(private val moshi: Moshi, client: OkHttpClient) : Vi
         Timber.d("Logging in: $username:$password")
 
         val loginCred =
-            moshi.adapter(LoginCredentials::class.java).toJson(LoginCredentials(username, password))
+//            moshi.adapter(LoginCredentials::class.java).toJson()
         viewModelScope.launch {
-            val result = serverInterface.login(loginCred)
-            Timber.d("Response: ${result.body()}")
+            val result = serverInterface.login(LoginCredentials(username, password))
+            Timber.d("Response: ${result.body()?.token}")
         }
 
     }
