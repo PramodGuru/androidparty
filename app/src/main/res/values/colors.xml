@@ -5,4 +5,5 @@
     <color name="grey">#afb4bb</color>
     <color name="lime">#32CD32</color>
     <color name="navy">#000080</color>
+    <color name="grey_light">#cecece</color>
 </resources>

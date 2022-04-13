@@ -19,7 +19,8 @@ import timber.log.Timber
 
 class MainActivityViewModel(
         private val sharedPrefs: SharedPreferences,
-        moshi: Moshi, client: OkHttpClient,
+        moshi: Moshi,
+        client: OkHttpClient,
         private val resources: Resources) : ViewModel(),
         KoinComponent {
 
@@ -34,9 +35,6 @@ class MainActivityViewModel(
         _state.value = UIState()
     }
 
-    fun isTokenAvailable(): Boolean {
-        return sharedPrefs.getString(AUTH_TOKEN, null) != null
-    }
 
     private var serverInterface: ServerInterface =
             RetrofitFactory.createRetrofit(moshi, client, BASE_URL).create(ServerInterface::class.java)

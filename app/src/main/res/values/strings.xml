@@ -7,4 +7,6 @@
     <string name="success">Log-in successful</string>
     <string name="failure">Login failed</string>
     <string name="wait">Logging in</string>
+    <string name="servers">Servers</string>
+    <string name="distance">Distance</string>
 </resources>

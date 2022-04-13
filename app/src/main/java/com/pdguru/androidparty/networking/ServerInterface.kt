@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface ServerInterface {
 
     @GET("servers")
-    suspend fun getServers(): Response<List<ServerLocations>>
+    suspend fun getServers(@Header("Authorization") token: String): Response<List<ServerLocations>>
 
     @Headers("Content-Type: application/json")
     @POST("tokens")

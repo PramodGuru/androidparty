@@ -9,11 +9,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import com.pdguru.androidparty.databinding.ActivityMainBinding
-import com.pdguru.androidparty.logging.LoggingTree
+import com.pdguru.androidparty.servers.ServerActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<MainActivityViewModel>()
@@ -21,14 +19,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        plantTimber()
         setupDataBinding()
         setInteractors()
         observeUiState()
     }
 
     private fun observeUiState() {
-        viewModel.state.observe(this, Observer { state ->
+        viewModel.state.observe(this) { state ->
             if (state.message != null) {
                 showToast(state.message)
             }
@@ -36,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             if (state.goNext) {
                 callIntent()
             }
-        })
+        }
     }
 
     private fun callIntent() {
@@ -45,7 +42,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading(processing: Boolean) {
         val progressBar = findViewById<ProgressBar>(R.id.progress_circular)
-
         progressBar.visibility = if (processing) View.VISIBLE else View.GONE
     }
 
@@ -73,11 +69,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun login(username: String, password: String) {
         viewModel.login(username, password)
-    }
-
-    private fun plantTimber() {
-        Timber.plant(LoggingTree(resources.getString(R.string.app_name)))
-        Timber.d("Timber is planted")
     }
 
     private fun showToast(message: String) {

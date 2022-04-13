@@ -3,6 +3,7 @@ package com.pdguru.androidparty.di
 import android.content.Context
 import com.pdguru.androidparty.BASE_URL
 import com.pdguru.androidparty.MainActivityViewModel
+import com.pdguru.androidparty.servers.ServerActivityViewModel
 import com.pdguru.androidparty.TAG
 import com.pdguru.androidparty.networking.HttpClientProvider
 import com.pdguru.androidparty.networking.MoshiFactory
@@ -16,10 +17,11 @@ import org.koin.dsl.module
 object KoinGraph {
     private val clientProvider = HttpClientProvider()
 
+
     fun appModules(): List<Module> {
         return listOf(
-            networkModule,
-            baseModule
+                networkModule,
+                baseModule
         )
     }
 
@@ -28,6 +30,7 @@ object KoinGraph {
         single { androidContext().getSharedPreferences(TAG, Context.MODE_PRIVATE) }
 
         viewModel { MainActivityViewModel(get(), get(), clientProvider.getOkHttpClient(), get()) }
+        viewModel { ServerActivityViewModel(get(), get(), clientProvider.getOkHttpClient(), get()) }
     }
 
     private val networkModule = module {
