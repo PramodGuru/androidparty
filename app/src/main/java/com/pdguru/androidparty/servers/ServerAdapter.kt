@@ -30,5 +30,4 @@ class ServerAdapter(private val servers: List<ServerLocations>) : RecyclerView.A
     override fun getItemCount(): Int {
         return servers.size
     }
-
 }
