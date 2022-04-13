@@ -1,11 +1,15 @@
 package com.pdguru.androidparty
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.pdguru.androidparty.databinding.ActivityMainBinding
 import com.pdguru.androidparty.logging.LoggingTree
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,6 +24,29 @@ class MainActivity : AppCompatActivity() {
         plantTimber()
         setupDataBinding()
         setInteractors()
+        observeUiState()
+    }
+
+    private fun observeUiState() {
+        viewModel.state.observe(this, Observer { state ->
+            if (state.message != null) {
+                showToast(state.message)
+            }
+            showLoading(state.isProcessing)
+            if (state.goNext) {
+                callIntent()
+            }
+        })
+    }
+
+    private fun callIntent() {
+        startActivity(Intent(this, ServerActivity::class.java))
+    }
+
+    private fun showLoading(processing: Boolean) {
+        val progressBar = findViewById<ProgressBar>(R.id.progress_circular)
+
+        progressBar.visibility = if (processing) View.VISIBLE else View.GONE
     }
 
     private fun setupDataBinding() {
@@ -35,28 +62,25 @@ class MainActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.input_password)
 
 
-            loginButton.setOnClickListener {
-                if (username.text.isNotEmpty() && password.text.isNotEmpty()) {
-                    Timber.d("button pressed")
-                    Timber.d("u:p = ${username.text}:${password.text}")
-                    login(username.text.toString(), password.text.toString())
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Please enter username and password",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
+        loginButton.setOnClickListener {
+            if (username.text.isNotEmpty() && password.text.isNotEmpty()) {
+                login(username.text.toString(), password.text.toString())
+            } else {
+                showToast("Please enter username and password")
+            }
         }
     }
 
     private fun login(username: String, password: String) {
-            viewModel.login(username, password)
+        viewModel.login(username, password)
     }
 
     private fun plantTimber() {
         Timber.plant(LoggingTree(resources.getString(R.string.app_name)))
         Timber.d("Timber is planted")
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

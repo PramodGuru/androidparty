@@ -6,4 +6,5 @@
     <string name="error">Something went wrong</string>
     <string name="success">Log-in successful</string>
     <string name="failure">Login failed</string>
+    <string name="wait">Logging in</string>
 </resources>
