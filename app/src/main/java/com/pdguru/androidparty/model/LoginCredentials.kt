@@ -1,12 +1,14 @@
 package com.pdguru.androidparty.model
 
-import com.squareup.moshi.Json
+import android.os.Parcelable
+import androidx.annotation.Keep
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
+@Keep
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class LoginCredentials(
-    @Json(name = "username")
     val username: String,
-    @Json(name = "password")
     val password: String
-)
+) : Parcelable

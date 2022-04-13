@@ -7,10 +7,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class RetrofitFactory {
     companion object {
-        fun createRetrofit(httpClient: OkHttpClient, baseUrl: String): Retrofit {
+        fun createRetrofit(moshi: Moshi, httpClient: OkHttpClient, baseUrl: String): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(httpClient)
                 .build()
         }
